@@ -18,10 +18,6 @@ public class Android : MonoBehaviour
     public InputField _tInputName;
     public Text _tId;
 
-   //[Header("Recibe de la base")]
-   // public Text _stateText, _infoText;
-   // public int _Class;
-
     private string _conn, _sqlQuery;
     IDbConnection _dbconn;
     IDbCommand _dbcmd;
@@ -114,7 +110,7 @@ public class Android : MonoBehaviour
        
 
 #endif
-        //EDebug.Log (SearchMatchInfo("Lara", "JUEGO1"));
+       
        
     }
     #region Buttons
@@ -138,13 +134,9 @@ public class Android : MonoBehaviour
             }
 
             InsertClass(_tInputNamePro.text.ToUpper());
-        }
-            
+        }    
     }
-    public void prueba()
-    {
-        Debug.Log(GetDifficulty("pepe", "JUEGO1"));
-    }
+  
     public void DeleteClassButton()
     {
         DeleteClass(_tInputNamePro.text.ToUpper());
@@ -219,7 +211,6 @@ public class Android : MonoBehaviour
             }
             _dbconn.Close();
         }
-        //_infoText.text = "";
 
         ReaderClass();
     }
@@ -260,10 +251,7 @@ public class Android : MonoBehaviour
             dbcmd2.Dispose();
             dbcmd2 = null;
             _dbconn.Close();
-            //_stateText.text = deleteById + " Delete  Done ";
-
         }
-        //_infoText.text = "";
         ReaderClass();
 
     }
@@ -293,7 +281,7 @@ public class Android : MonoBehaviour
             _dbcmd.CommandText = _sqlQuery;
             _dbcmd.ExecuteScalar();
             _dbconn.Close();
-            //Search_function(t_id_class.text);
+          
             ReaderClass();
         }
     }
@@ -328,7 +316,7 @@ public class Android : MonoBehaviour
 
                 Namereaders = reader.GetString(1);
 
-               // _infoText.text += idreaders + Namereaders + " " + "\n";
+              
                 EDebug.Log("Value=" + idreaders + " name =" + Namereaders);
                 GameObject newButton = Instantiate(ServiceLocator.Instance.GetService<UIManager>()._classButton, ServiceLocator.Instance.GetService<UIManager>()._classPanel.transform);
                 newButton.GetComponentInChildren<TextMeshProUGUI>().text = Namereaders;
@@ -346,7 +334,7 @@ public class Android : MonoBehaviour
 
 * @desc Inserta un estudiante en la base de datos
 
-* @param string Name - El nombre del estudiante que va a ser añadido
+* @param string Name - El nombre del estudiante que va a ser aÃ±adido
 */
     private void InsertStudent(string name)
     {
@@ -424,7 +412,7 @@ public class Android : MonoBehaviour
             dbcmd.Dispose();
             dbcmd = null;
             _dbconn.Close();
-           // _stateText.text = deleteById + " Delete  Done ";
+         
 
         }
         ReaderStudent(_buttonPrefab, _location);
@@ -457,8 +445,7 @@ public class Android : MonoBehaviour
             _dbcmd.CommandText = _sqlQuery;
             _dbcmd.ExecuteScalar();
             _dbconn.Close();
-            //Search_function(t_id_class.text);
-            //ReaderStudent();
+            
         }
     }
     /** 
@@ -499,9 +486,7 @@ public class Android : MonoBehaviour
                 id_Student_readers = reader.GetInt32(0);
                 Namereaders = reader.GetString(1); ;
                 id_Classroom_readers = reader.GetInt32(2);
-              //  _infoText.text += id_Student_readers + Namereaders + id_Classroom_readers + " " + "\n";
-
-                EDebug.Log("Value=" + id_Student_readers + " name =" + Namereaders + " Clase =" + id_Classroom_readers);
+             
                 GameObject newButton = Instantiate(prefab, location);
 
                 newButton.GetComponentInChildren<TextMeshProUGUI>().text = Namereaders;
@@ -541,12 +526,7 @@ public class Android : MonoBehaviour
             IDataReader reader = dbcmd.ExecuteReader();
             while (reader.Read())
             {
-                //  string id = reader.GetString(0);
                 Name_readers_Search = reader.GetString(0);
-               
-               // _stateText.text += Name_readers_Search + " - " +  "\n";
-
-                EDebug.Log(" name =" + Name_readers_Search );
 
             }
             reader.Close();
@@ -562,7 +542,7 @@ public class Android : MonoBehaviour
     #region Table Session
     /** 
 
-    * @desc Añade la fecha y hora actuales a la base
+    * @desc AÃ±ade la fecha y hora actuales a la base
     */
     public void InsertSession()
     {
@@ -595,16 +575,13 @@ public class Android : MonoBehaviour
             while (reader.Read())
             {
                 date = reader.GetString(0);
-
-               // _infoText.text += date + " " + "\n";
-                EDebug.Log("Value=" + date + " name =");
             }
             reader.Close();
             reader = null;
             dbcmd.Dispose();
             dbcmd = null;
             _dbconn.Close();
-            //       dbconn = null;
+         
 
         }
     }
@@ -622,9 +599,6 @@ public class Android : MonoBehaviour
             while (reader.Read())
             {
                 id = reader.GetInt32(0);
-
-                // _infoText.text += date + " " + "\n";
-                EDebug.Log("Value=" + id + " name =");
             }
 
             reader.Close();
@@ -634,7 +608,6 @@ public class Android : MonoBehaviour
             dbcmd = null;
 
             _dbconn.Close();
-            //       dbconn = null;
         }
         return id;
     }
@@ -696,16 +669,16 @@ public class Android : MonoBehaviour
             data[1] = averagePoints;
 
             return data;
-            //return json;
+           
         }
-        // _infoText.text = "";
+      
     }
     /** 
 
     * @desc Registra una partida a la base
 
     * @param int idStudent - El id del estudiante
-    * @param int idGSession- El id de la sesión
+    * @param int idGSession- El id de la sesiÃ³n
 * @param int idGame- El id del juego al que ha jugado
     * @param int team- El equipo del estudiante
 * @param string matchInfo- Informacion de la partida
@@ -748,123 +721,6 @@ public class Android : MonoBehaviour
 
             _dbconn.Close();
         }
-       // _infoText.text = "";
-        EDebug.Log("Insert Done: InsertMatch");
-
     }
     #endregion
-
-
-    ////Search 
-    //public void Search_button()
-    //{
-    //    data_staff.text = "";
-    //    Search_function(t_id.text);
-
-    //}
-
-    ////Found to Update 
-    //public void F_to_update_button()
-    //{
-    //    data_staff.text = "";
-    //    F_to_update_function(t_id.text);
-
-    //}
-    ////Update
-    //public void Update_button()
-    //{
-    //    update_function(t_id.text, t_name.text, t_Address.text);
-
-    //}
-
-    ////Search on Database by ID
-    //private void Search_function(string Search_by_id)
-    //{
-    //    using (dbconn = new SqliteConnection(conn))
-    //    {
-    //        string Name_readers_Search, Address_readers_Search;
-    //        dbconn.Open(); //Open connection to the database.
-    //        IDbCommand dbcmd = dbconn.CreateCommand();
-    //        string sqlQuery = "SELECT name,address " + "FROM Staff where id =" + Search_by_id;// table name
-    //        dbcmd.CommandText = sqlQuery;
-    //        IDataReader reader = dbcmd.ExecuteReader();
-    //        while (reader.Read())
-    //        {
-    //            //  string id = reader.GetString(0);
-    //            Name_readers_Search = reader.GetString(0);
-    //            Address_readers_Search = reader.GetString(1);
-    //            data_staff.text += Name_readers_Search + " - " + Address_readers_Search + "\n";
-
-    //            EDebug.Log(" name =" + Name_readers_Search + "Address=" + Address_readers_Search);
-
-    //        }
-    //        reader.Close();
-    //        reader = null;
-    //        dbcmd.Dispose();
-    //        dbcmd = null;
-    //        dbconn.Close();
-
-
-    //    }
-
-    //}
-
-
-    ////Search on Database by ID
-    //private void F_to_update_function(string Search_by_id)
-    //{
-    //    using (dbconn = new SqliteConnection(conn))
-    //    {
-    //        string Name_readers_Search, Address_readers_Search;
-    //        dbconn.Open(); //Open connection to the database.
-    //        IDbCommand dbcmd = dbconn.CreateCommand();
-    //        string sqlQuery = "SELECT name,address " + "FROM Staff where id =" + Search_by_id;// table name
-    //        dbcmd.CommandText = sqlQuery;
-    //        IDataReader reader = dbcmd.ExecuteReader();
-    //        while (reader.Read())
-    //        {
-
-    //            Name_readers_Search = reader.GetString(0);
-    //            Address_readers_Search = reader.GetString(1);
-    //            t_name.text = Name_readers_Search;
-    //            t_Address.text = Address_readers_Search;
-
-    //        }
-    //        reader.Close();
-    //        reader = null;
-    //        dbcmd.Dispose();
-    //        dbcmd = null;
-    //        dbconn.Close();
-
-
-    //    }
-
-    //}
-    ////Update on  Database 
-    //private void update_function(string update_id, string update_name, string update_address)
-    //{
-    //    using (dbconn = new SqliteConnection(conn))
-    //    {
-    //        dbconn.Open(); //Open connection to the database.
-    //        dbcmd = dbconn.CreateCommand();
-    //        sqlQuery = string.Format("UPDATE Staff set name = @name ,address = @address where ID = @id ");
-
-    //        SqliteParameter P_update_name = new SqliteParameter("@name", update_name);
-    //        SqliteParameter P_update_address = new SqliteParameter("@address", update_address);
-    //        SqliteParameter P_update_id = new SqliteParameter("@id", update_id);
-
-    //        dbcmd.Parameters.Add(P_update_name);
-    //        dbcmd.Parameters.Add(P_update_address);
-    //        dbcmd.Parameters.Add(P_update_id);
-
-    //        dbcmd.CommandText = sqlQuery;
-    //        dbcmd.ExecuteScalar();
-    //        dbconn.Close();
-    //        Search_function(t_id.text);
-    //    }
-
-    //    // SceneManager.LoadScene("home");
-    //}
-
-
 }
