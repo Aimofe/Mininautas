@@ -139,14 +139,14 @@ public class ButtonManager : MonoBehaviour
             counter++;
             button.GetComponent<Image>().sprite = button.GetComponent<ObjectPanel>()._pressedSprite;
             button.GetComponent<ObjectPanel>()._pressed = true;
-            //button.GetComponent<GeometryButton>()._isPresed = true;
+           
         }
         else
         {
             counter--;
             button.GetComponent<Image>().sprite = button.GetComponent<ObjectPanel>()._restSprite;
             button.GetComponent<ObjectPanel>()._pressed = false;
-            //button.GetComponent<GeometryButton>()._isPresed = false;
+            
         }
         return counter;
     }
