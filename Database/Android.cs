@@ -48,7 +48,7 @@ public class Android : MonoBehaviour
         _dbconn = new SqliteConnection(_conn);
         _dbconn.Open();
 
-#elif UNITY_ANDROID
+    #elif UNITY_ANDROID
 
         string filepath = Application.persistentDataPath + "/" + _DatabaseName;
             if (!File.Exists(filepath))
